@@ -24,15 +24,15 @@
         android:id="@+id/buttonListen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LISTEN"
+        android:text="NEW GAME"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="83dp"
+        android:layout_marginBottom="87dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.054" />
+        app:layout_constraintHorizontal_bias="0.501" />
 
     <TextView
         android:id="@+id/textViewTop"
@@ -52,29 +52,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="START"
-        tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="@+id/buttonNext"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toRightOf="@+id/buttonNext"
-        android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Next"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         android:visibility="gone"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonPlay"
-        app:layout_constraintTop_toTopOf="@+id/buttonPlay" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/scoreCount"

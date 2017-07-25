@@ -33,12 +33,12 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-    Button btn_listen, btn_play, btn_next;
+    Button btn_listen, btn_play;
     TextView txtl, textViewTop, score;
     TextToSpeech t1;
     static int counter = 2;
     static int iterator = 0;
-    String arrayDirection[] = {"Right", "Left", "Double Tap", "2 Finger Tap"};
+    String arrayDirection[] = {"Right", "Left", "Double Tap", "3 Finger Tap"};
     ArrayList<String> display = new ArrayList<>();
     float[] mValuesMagnet = new float[3];
     float[] mValuesAccel = new float[3];
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             }
         });
 
-        btn_next = (Button) findViewById(R.id.buttonNext);
         btn_play = (Button) findViewById(R.id.buttonPlay);
         btn_listen = (Button) findViewById(R.id.buttonListen);
         txtl = (TextView) findViewById(R.id.textView1);
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 pointerCount = event.getPointerCount();
-                if (pointerCount == 2) {
+                if (pointerCount == 3) {
                     responseNumber = 3;
                     handleResponse(responseNumber);
                     //Toast.makeText(MainActivity.this, "2 Finger Tap on Screen is Working.", Toast.LENGTH_LONG).show();
@@ -268,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                     return;
                 }
             }
-            else if (display.get(iterator).equals("2 Finger Tap")) {
+            else if (display.get(iterator).equals("3 Finger Tap")) {
                 if (responseNumber == 3) {
                     txtl.setText("Level Completed!");
                     handleAnswer();
@@ -310,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                     return;
                 }
             }
-            else if (display.get(iterator).equals("2 Finger Tap")) {
+            else if (display.get(iterator).equals("3 Finger Tap")) {
                 if (responseNumber == 4) {
                     txtl.setText("Correct");
                     handleAnswer();
@@ -330,6 +329,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             scoreCount = 0;
             score.setText("Score: " + scoreCount);
             notClickLayout.setBackgroundColor(getResources().getColor(R.color.red));
+            Toast.makeText(getApplicationContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
             notClickLayout.setClickable(true);
             btn_listen.setText("New Game");
             btn_listen.setVisibility(View.VISIBLE);
@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             v.vibrate(1400);
             score.setText("Score: " + scoreCount);
             notClickLayout.setBackgroundColor(getResources().getColor(R.color.blue));
-            btn_listen.setText("Listen");
+            btn_listen.setText("Next");
             btn_listen.setVisibility(View.VISIBLE);
         }
     }
