@@ -22,6 +22,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         score = (TextView) findViewById(R.id.scoreCount);
         notClickLayout = (ConstraintLayout) findViewById(R.id.cLayout);
         v = (Vibrator)MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
-        notClickLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+        notClickLayout.setBackground(getResources().getDrawable(R.drawable.choice_background));
 
         notClickLayout.setClickable(true);
         final SensorEventListener mEventListener = new SensorEventListener() {
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 txtl.setText("Follow the directions in order!");
                 btn_listen.setVisibility(View.GONE);
                 btn_play.setVisibility(View.VISIBLE);
-                notClickLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+                notClickLayout.setBackground(getResources().getDrawable(R.drawable.choice_background));
                 textViewTop.setVisibility(View.VISIBLE);
 
                 if(counter == 1){
@@ -340,8 +343,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             v.vibrate(400);
             score.setText("Score: " + scoreCount);
             notClickLayout.setBackgroundColor(getResources().getColor(R.color.green));
-            notClickLayout.setBackgroundColor(getResources().getColor(R.color.blue));
-            notClickLayout.setBackgroundColor(getResources().getColor(R.color.green));
+            notClickLayout.startAnimation(getBlinkAnimation());
         }
         if(txtl.getText().equals("Level Completed!")){
             ++counter;
@@ -349,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             scoreCount++;
             v.vibrate(1400);
             score.setText("Score: " + scoreCount);
-            notClickLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+            notClickLayout.setBackground(getResources().getDrawable(R.drawable.choice_background));
             btn_listen.setText("Next");
             btn_listen.setVisibility(View.VISIBLE);
         }
@@ -374,5 +376,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public Animation getBlinkAnimation(){
+        Animation animation = new AlphaAnimation(1, 0);         // Change alpha from fully visible to invisible
+        animation.setDuration(300);                             // duration - half a second
+        animation.setInterpolator(new LinearInterpolator());    // do not alter animation rate
+        animation.setRepeatCount(1);                            // Repeat animation infinitely
+        animation.setRepeatMode(Animation.REVERSE);             // Reverse animation at the end so the button will fade back in
+
+        return animation;
     }
 }

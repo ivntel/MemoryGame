@@ -5,10 +5,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -234,5 +238,26 @@ public class ChoiceActivity extends AppCompatActivity implements GestureDetector
             startActivity(i);
         }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_menu:
+                new AlertDialog.Builder(ChoiceActivity.this)
+                        .setTitle("HOW TO USE")
+                        .setMessage("To submit answer perform the task beside the correlating answer")
+                        .setNegativeButton("Done",null)
+                        .create()
+                        .show();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.geniusplaza.shakedetection.MainActivity"
+    android:background="@drawable/choice_background"
     android:id="@+id/cLayout">
 
     <TextView
